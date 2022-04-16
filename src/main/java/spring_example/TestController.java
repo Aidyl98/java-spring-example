@@ -4,7 +4,9 @@
  */
 package spring_example;
 
-import spring_example.Domains.NewArea;
+import spring_example.repo.AreaRepo;
+import spring_example.entitys.Area;
+import spring_example.entitys.Domains.NewArea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
