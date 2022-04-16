@@ -16,28 +16,30 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Aidyl
  */
-@RestController
-@RequestMapping(value = "/test")
+@RestController  // Allows the class to access the http petitions.
+@RequestMapping(value = "/test")  // The url before all the methods defined in this class.
 public class TestController {
 
-    @Autowired
+    @Autowired // Injects the dependencies.
     private AreaRepo areaRepo;
 
-    @GetMapping("/hi")
+    @GetMapping("/hi") // Return HI when the url is test(as in the init of the class)/hi.
     public String hi() {
         return "HI";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create") // Creates an Area when url test/create
     public String create(@RequestBody NewArea area) {
+        // Convert the data  enter by the user the NewArea in this case to the Area Entity form the DB.
         Area areaFinal = new Area(area.name(), area.desc());
+        // The Area is savedd in the DB.
         areaRepo.save(areaFinal);
-        System.out.println(area.name());
         return area.name();
     }
 
-    @GetMapping("/find_all")
+    @GetMapping("/find_all")  // Finds all the Areas when url test/find_all
     public Iterable<Area> findAll() {
+        // The interface AreaRepo have internally all the crud methods.
         return areaRepo.findAll();
     }
 }
